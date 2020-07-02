@@ -1,12 +1,10 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-const charSet = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "0123456789", "`~!@#$%^&*()_-+={}|[]\:\";\'<>?,./"];
+var charSet = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "0123456789", "`~!@#$%^&*()_-+={}|[]\:\";\'<>?,./"];
 
 // Write password to the #password input
 function writePassword() {
-    console.log(getLength());
-    console.log(chooseCharSets());
-    var password = generatePassword();
+    var password = generatePassword(getLength(), chooseCharSets());
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
@@ -24,14 +22,21 @@ function getLength() {
 }
 
 function chooseCharSets() {
-
+    var selectedSet = [charSet[1]];
+    if (confirm("upper?") === true) {
+        selectedSet.push(charSet[0]);
+    }
+    if (confirm("num?") === true) {
+        selectedSet.push(charSet[2]);
+    }
+    if (confirm("special?") === true) {
+        selectedSet.push(charSet[3]);
+    }
+    return selectedSet;
 }
 
 function generatePassword() {
     var passWord = "";
-
-
-    console.log(charSet[0]);
 }
 
 // Add event listener to generate button
