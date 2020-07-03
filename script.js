@@ -11,34 +11,40 @@ function writePassword() {
 
 function generatePassword() {
     var length = getLength();
-    var flag = getFlags();
-    var set = getSet(flag);
-    console.log(set);
+    // var flags = getflags();
+    var selectedChars = getSelectedChars();
+    console.log(selectedChars);
 
-    var result = "";
-    // while (!validate(result, set)) {
-    //     for (i = 0; i < length; i++) {
-    //         result += set.charAt(Math.floor(Math.random() * set.length));
-    //     }
+    var result = generate(length, selectedChars);
+    console.log(result);
+
+    // while (validate(result, flagss)) {
+    //     console.log('regenerate...');
+    //     result = generate(length, selectedChars);
     // }
 
-    // console.log(result.length);
-    // console.log(validate(result, set));
+    // console.log(result);
     return result;
 }
 
-function getSet(flag) {
-    var set = "";
-    for (i = 0; i < flag.length; i++) {
-        if (flag[i] === true) {
-            set += charSet[i];
-        }
+// function getselectedChars(flags) {
+//     var selectedChars = "";
+//     for (i = 0; i < flags.length; i++) {
+//         if (flags[i] === true) {
+//             selectedChars += charselectedChars[i];
+//         }
+//     }
+
+//     return selectedChars;
+// }
+
+function generate(length, selectedChars) {
+    var result = "";
+    for (i = 0; i < length; i++) {
+        result += selectedChars.charAt(Math.floor(Math.random() * selectedChars.length));
     }
-    return set;
-}
 
-function generate() {
-
+    return result;
 }
 
 function getLength() {
@@ -50,35 +56,78 @@ function getLength() {
     return parseInt(length);
 }
 
-function getFlags() {
-    var flag = new Array(4).fill(false);
+function getSelectedChars() {
+    var selectedChars = "";
     alert("Please select what caracter types would you like to include.");
 
-    while (!flag.find(element => element === true)) {
+    while (selectedChars.length === 0) {
         if (confirm("Lowercase caracters?") === true) {
-            flag[0] = true;
+            selectedChars += charSet[0];
         }
         if (confirm("Uppercase caracters?") === true) {
-            flag[1] = true;
+            selectedChars += charSet[1];
         }
         if (confirm("Numerical caracters?") === true) {
-            flag[2] = true;
+            selectedChars += charSet[2];
         }
         if (confirm("Special caracters?") === true) {
-            flag[3] = true;
+            selectedChars += charSet[3];
         }
     }
 
-    console.log(flag);
-
-    return flag;
+    return selectedChars;
 }
 
-function validate(result, set) {
-    for (i = 0; i < result.length; i++) {
-        return (27 > set.indexOf(result.charAt(i)) >= 0 || 52 > set.indexOf(result.charAt(i)) >= 27 || 62 > set.indexOf(result.charAt(i)) >= 52 || set.length > set.indexOf(result.charAt(i)) >= 62);
-    }
-}
+
+// function getflags() {
+//     var flags = new Array(charselectedChars.length).fill(false);
+//     alert("Please select what caracter types would you like to include.");
+
+//     while (!flags.find(element => element === true)) {
+//         if (confirm("Lowercase caracters?") === true) {
+//             flags[0] = true;
+//         }
+//         if (confirm("Uppercase caracters?") === true) {
+//             flags[1] = true;
+//         }
+//         if (confirm("Numerical caracters?") === true) {
+//             flags[2] = true;
+//         }
+//         if (confirm("Special caracters?") === true) {
+//             flags[3] = true;
+//         }
+//     }
+
+//     console.log(flags);
+
+//     return flags;
+// }
+
+
+// function validate(result, flagss) {
+//     var wordflagsss = new Array(charselectedChars.length).fill(false);
+//     for (i = 0; i < result.length; i++) {
+//         for (j = 0; j < charselectedChars.length; j++) {
+//             if (wordflagsss[j] === false && charselectedChars[j].includes(result.charAt(i))) {
+//                 wordflagss[j] = true;
+//             }
+//             if (flags[j] !== wordflagss[j]) {
+//                 return false;
+//             }
+//         }
+//     }
+
+
+//     // for (i = 0; i < result.length; i++) {
+//     //     for (j = 0; j < flags.length;j++) {
+//     //         if (flags[i] === true) {
+//     //             if (charselectedChars[i].includes(result.charAt(i))) {
+//     //                 return true;
+//     //             }
+//     //         }
+//     //     }
+//     // }
+// }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
