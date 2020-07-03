@@ -1,15 +1,26 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var charSet = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "0123456789", "`~!@#$%^&*()_-+={}|[]\:\";\'<>?,./"];
+var charSet = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "`~!@#$%^&*()_-+={}|[]\:\";\'<>?,./"];
 
 // Write password to the #password input
 function writePassword() {
-    var password = generatePassword(getLength(), chooseCharSets());
+    var password = generatePassword();
     var passwordText = document.querySelector("#password");
-
     passwordText.value = password;
+}
 
+function generatePassword() {
+    var length = parseInt(getLength());
+    var set = chooseCharSets();
 
+    var result = "";
+    for (i = 0; i < length; i++) {
+        result += set.charAt(Math.floor(Math.random() * set.length));
+    }
+
+    console.log(result);
+    console.log(validate(result, set));
+    return result;
 }
 
 function getLength() {
@@ -22,22 +33,22 @@ function getLength() {
 }
 
 function chooseCharSets() {
-    var selectedSet = [charSet[1]];
+    var selectedSet = charSet[0];
     if (confirm("upper?") === true) {
-        selectedSet.push(charSet[0]);
+        selectedSet += charSet[1];
     }
     if (confirm("num?") === true) {
-        selectedSet.push(charSet[2]);
+        selectedSet += charSet[2];
     }
     if (confirm("special?") === true) {
-        selectedSet.push(charSet[3]);
+        selectedSet += charSet[3];
     }
+
     return selectedSet;
 }
 
-function generatePassword() {
-    var passWord = "";
-}
+
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
