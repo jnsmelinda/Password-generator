@@ -14,8 +14,10 @@ function generatePassword() {
     var set = chooseCharSets();
 
     var result = "";
-    for (i = 0; i < length; i++) {
-        result += set.charAt(Math.floor(Math.random() * set.length));
+    while (!validate(result, set) && result.length === 0) {
+        for (i = 0; i < length; i++) {
+            result += set.charAt(Math.floor(Math.random() * set.length));
+        }
     }
 
     console.log(result);
@@ -47,8 +49,11 @@ function chooseCharSets() {
     return selectedSet;
 }
 
-
-
+function validate(result, set) {
+    for (i = 0; i < result.length; i++) {
+        return (27 > set.indexOf(result.charAt(i)) >= 0 || 52 > set.indexOf(result.charAt(i)) >= 27 || 62 > set.indexOf(result.charAt(i)) >= 52 || set.length > set.indexOf(result.charAt(i)) >= 62);
+    }
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
