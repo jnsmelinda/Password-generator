@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var charSet = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "`~!@#$%^&*()_-+={}|[]\:\";\'<>?,./"];
+const charSet = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "`~!@#$%^&*()_-+={}|[]\:\";\'<>?,./"];
 
 // Write password to the #password input
 function writePassword() {
@@ -11,18 +11,34 @@ function writePassword() {
 
 function generatePassword() {
     var length = getLength();
-    var set = chooseCharSets();
+    var flag = getFlags();
+    var set = getSet(flag);
+    console.log(set);
 
     var result = "";
-    while (!validate(result, set)) {
-        for (i = 0; i < length; i++) {
-            result += set.charAt(Math.floor(Math.random() * set.length));
-        }
-    }
+    // while (!validate(result, set)) {
+    //     for (i = 0; i < length; i++) {
+    //         result += set.charAt(Math.floor(Math.random() * set.length));
+    //     }
+    // }
 
     // console.log(result.length);
     // console.log(validate(result, set));
     return result;
+}
+
+function getSet(flag) {
+    var set = "";
+    for (i = 0; i < flag.length; i++) {
+        if (flag[i] === true) {
+            set += charSet[i];
+        }
+    }
+    return set;
+}
+
+function generate() {
+
 }
 
 function getLength() {
@@ -34,28 +50,28 @@ function getLength() {
     return parseInt(length);
 }
 
-function chooseCharSets() {
-    var selectedSet = "";
+function getFlags() {
+    var flag = new Array(4).fill(false);
     alert("Please select what caracter types would you like to include.");
 
-    while (selectedSet.length === 0) {
+    while (!flag.find(element => element === true)) {
         if (confirm("Lowercase caracters?") === true) {
-            selectedSet += charSet[0];
+            flag[0] = true;
         }
         if (confirm("Uppercase caracters?") === true) {
-            selectedSet += charSet[1];
+            flag[1] = true;
         }
         if (confirm("Numerical caracters?") === true) {
-            selectedSet += charSet[2];
+            flag[2] = true;
         }
         if (confirm("Special caracters?") === true) {
-            selectedSet += charSet[3];
+            flag[3] = true;
         }
     }
 
-    // console.log(selectedSet);
+    console.log(flag);
 
-    return selectedSet;
+    return flag;
 }
 
 function validate(result, set) {
