@@ -18,6 +18,7 @@ function generatePassword() {
     var result = generate(length, selectedChars);
     console.log(result);
 
+
     // while (validate(result, flagss)) {
     //     console.log('regenerate...');
     //     result = generate(length, selectedChars);
@@ -25,6 +26,26 @@ function generatePassword() {
 
     // console.log(result);
     return result;
+}
+
+function isValidPassword(password) {
+    var flags = new Array(charSet.length);
+
+    for (j = 0; j < charSet.length; j++) {
+        flags[j] = containsAny(pass, charSet[j]);
+    }
+
+    console.log(flags);
+}
+
+function containsAny(value, setOfCharacters) {
+    for (i = 0; i < setOfCharacters.length; i++) {
+        if (value.includes(setOfCharacters.charAt(i))) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 // function getselectedChars(flags) {
