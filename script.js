@@ -26,8 +26,8 @@ function generatePassword() {
 function getPasswordLength() {
     var length = prompt("Choose the length of the password between 8 and 128");
     while (length < 8 || length > 128) {
-        alert("between 8 and 128");
-        length = prompt("length between 8 and 128");
+        alert("Please enter the length between 8 and 128");
+        length = prompt("Choose the length of the password between 8 and 128");
     }
     return parseInt(length);
 }
