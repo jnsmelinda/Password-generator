@@ -70,7 +70,9 @@ function generate(length, selectedChars) {
     for (var i = 0; i < length; i++) {
         password += selectedChars.charAt(Math.floor(Math.random() * selectedChars.length));
     }
-    console.log(`password: ${password}`);
+
+    // Uncomment the line below to see how many times the password needs to be regenerated.
+    // console.log(`password: ${password}`);
 
     return password;
 }
