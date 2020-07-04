@@ -34,19 +34,19 @@ function getPasswordLength() {
 
 function getSelectedCharSets() {
     var flags = new Array(charSets.length).fill(false);
-    alert("Please select what caracter sets would you like to include.");
+    alert("Please select what character sets would you like to include.");
 
     while (!flags.find(element => element === true)) {
-        if (confirm("Lowercase caracters?") === true) {
+        if (confirm("Lowercase characters?") === true) {
             flags[0] = true;
         }
-        if (confirm("Uppercase caracters?") === true) {
+        if (confirm("Uppercase characters?") === true) {
             flags[1] = true;
         }
-        if (confirm("Numerical caracters?") === true) {
+        if (confirm("Numerical characters?") === true) {
             flags[2] = true;
         }
-        if (confirm("Special caracters?") === true) {
+        if (confirm("Special characters?") === true) {
             flags[3] = true;
         }
     }
