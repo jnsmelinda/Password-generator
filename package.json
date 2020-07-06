@@ -1,0 +1,27 @@
+{
+  "name": "password-generator",
+  "version": "1.0.0",
+  "description": "The random password generator promts the user for the password length (8-128) and the strength of the password (lower case, upper case, numerical, special characters), then displays the generated password on the screen. The program ensures the user enters at least one set of characters in order to generate the password. The program ensures the password is random and contains at least one character of the selected character sets in order to fulfill the password complexity requirements for any real password field.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnsmelinda/Password-generator.git"
+  },
+  "author": "Melinda Ivanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jnsmelinda/Password-generator/issues"
+  },
+  "homepage": "https://jnsmelinda.github.io/Password-generator",
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}

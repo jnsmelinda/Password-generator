@@ -1,20 +1,20 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
-const charSets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "`~!@#$%^&*()_-+={}|[]\:\";\'<>?,./"];
+const generateBtn = document.querySelector("#generate");
+const charSets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "0123456789", "`~!@#$%^&*()_-+={}|[]:\";'<>?,./"];
 
 // Write password to the #password input
 function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
+    const password = generatePassword();
+    const passwordText = document.querySelector("#password");
     passwordText.value = password;
 }
 
 function generatePassword() {
-    var passwordLength = getPasswordLength();
-    var selectedCharSets = getSelectedCharSets();
-    var selectedChars = getSelectedChars(selectedCharSets);
+    const passwordLength = getPasswordLength();
+    const selectedCharSets = getSelectedCharSets();
+    const selectedChars = getSelectedChars(selectedCharSets);
 
-    var password = generate(passwordLength, selectedChars);
+    let password = generate(passwordLength, selectedChars);
 
     while (!isValidPassword(password, selectedCharSets)) {
         password = generate(passwordLength, selectedChars);
@@ -24,7 +24,7 @@ function generatePassword() {
 }
 
 function getPasswordLength() {
-    var length = prompt("Choose the length of the password between 8 and 128");
+    let length = prompt("Choose the length of the password between 8 and 128");
     while (length < 8 || length > 128) {
         alert("Please enter the length between 8 and 128");
         length = prompt("Choose the length of the password between 8 and 128");
@@ -33,10 +33,10 @@ function getPasswordLength() {
 }
 
 function getSelectedCharSets() {
-    var flags = new Array(charSets.length).fill(false);
+    const flags = new Array(charSets.length).fill(false);
     alert("Please select what character sets would you like to include.");
 
-    while (!flags.find(element => element === true)) {
+    while (!flags.find((element) => element === true)) {
         if (confirm("Lowercase characters?") === true) {
             flags[0] = true;
         }
@@ -55,8 +55,8 @@ function getSelectedCharSets() {
 }
 
 function getSelectedChars(selectedCharSets) {
-    var selectedChars = "";
-    for (var i = 0; i < selectedCharSets.length; i++) {
+    let selectedChars = "";
+    for (let i = 0; i < selectedCharSets.length; i++) {
         if (selectedCharSets[i] === true) {
             selectedChars += charSets[i];
         }
@@ -66,21 +66,21 @@ function getSelectedChars(selectedCharSets) {
 }
 
 function generate(length, selectedChars) {
-    var password = "";
-    for (var i = 0; i < length; i++) {
+    let password = "";
+    for (let i = 0; i < length; i++) {
         password += selectedChars.charAt(Math.floor(Math.random() * selectedChars.length));
     }
 
-    // Uncomment the line below to see how many times the password needs to be regenerated.
+    // Uncomment the line below to see how many times the password is regenerated.
     // console.log(`password: ${password}`);
 
     return password;
 }
 
 function isValidPassword(pass, flagsFromInput) {
-    var flagsFromPassword = new Array(charSets.length);
+    const flagsFromPassword = new Array(charSets.length);
 
-    for (var i = 0; i < charSets.length; i++) {
+    for (let i = 0; i < charSets.length; i++) {
         flagsFromPassword[i] = includesAny(pass, charSets[i]);
     }
 
@@ -88,7 +88,7 @@ function isValidPassword(pass, flagsFromInput) {
 }
 
 function includesAny(value, setOfCharacters) {
-    for (var i = 0; i < setOfCharacters.length; i++) {
+    for (let i = 0; i < setOfCharacters.length; i++) {
         if (value.includes(setOfCharacters.charAt(i))) {
             return true;
         }
@@ -98,7 +98,7 @@ function includesAny(value, setOfCharacters) {
 }
 
 function compareFlags(flagsFromInput, flagsFromPassword) {
-    for (var i = 0; i < flagsFromInput.length; i++) {
+    for (let i = 0; i < flagsFromInput.length; i++) {
         if (flagsFromPassword[i] !== flagsFromInput[i]) {
             return false;
         }
